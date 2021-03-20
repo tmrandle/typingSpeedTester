@@ -7,6 +7,7 @@ const THETIMER = document.querySelector(".timer");
 var timer = [0,0,0,0];
 var interval; //using a global variable for the interval, so that it can be cleared outside the function start
 var timerRunning = false; //global variable created to clear timer--reset interval
+var wpm = document.querySelector("#wpm");
 
 
 
@@ -48,6 +49,7 @@ function spellCheck(){
         }
     }
     //console.log(textEntered);
+   
 }
 
 //the function to detect the very first keystroke to start the timer
@@ -57,7 +59,7 @@ function start(){
         timerRunning = true; //This is so the timer stops and doesn't restart if text is removed from box
         interval = setInterval(runTimer, 10); //putting the value of setInterval method into the global variable interval to work with outside the function
     }
-    //console.log(textEnteredLength);
+    
 }
 
 //the function used by the button to reset everything
@@ -71,9 +73,26 @@ function reset() {
     TESTAREA.value = ""; //nothing in the test area--empty string
     THETIMER.innerHTML = "00.00.00"; //resetting the timer value in html to zeros
     TESTWRAPPER.style.borderColor = "grey"; //resetting the text box color to grey
-
+    wpm.innerHTML = "";
     //console.log("The reset button has been clicked.");
 }
+
+//creating a function to come up with the words per minute
+function wordsPerMin(){
+   
+    var wordspm = 0;
+    var string = TESTAREA.value; //string to be split
+    var length = string.split(/[^\s]+/).length - 1; //splitting string to find the words and putting it in the variable length
+    //console.log(length);
+
+     if (string == ORIGINTEXT){
+        wordspm = Math.floor(length/(timer[3]/6000)); //calculating wpm--lenth(words)/ time elapsed in minutes
+        wpm.innerHTML = wordspm;
+    }
+}
+
+
+
 
 
 // Event Listeners for the interactive portions of the type tester
@@ -82,6 +101,24 @@ function reset() {
 TESTAREA.addEventListener("keypress", start, false);
 //event listener to check letters--keys pressed with the text in the text to be compared
 TESTAREA.addEventListener("keyup", spellCheck, false);
+//event listener to detect keypress for word per minutres function
+TESTAREA.addEventListener("keyup", wordsPerMin, false);
 
 //event listener to know when reset button is clicked
 RESETBUTTON.addEventListener("click", reset, false);
+
+
+/************************************************************************************************ */
+/*  var startTime = Date.now();
+    var endTime;
+    var totalTime;
+    if (string == ORIGINTEXT){
+        endTime = Date.now();
+    }
+    totalTime = ((endTime - startTime)/60000); //the 60000 is to make it in minutes, else it is in milliseconds
+    console.log(totalTime);
+    wpm = Math.floor(length/totalTime);
+
+
+    document.getElementById("wpm").innerHTML
+    */
