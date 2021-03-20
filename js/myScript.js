@@ -86,7 +86,7 @@ function wordsPerMin(){
     //console.log(length);
 
      if (string == ORIGINTEXT){
-        wordspm = Math.floor(length/(timer[3]/6000)); //calculating wpm--lenth(words)/ time elapsed in minutes
+        wordspm = Math.round(length/(timer[3]/6000)); //calculating wpm--lenth(words)/ time elapsed in minutes
         wpm.innerHTML = wordspm;
     }
 }
