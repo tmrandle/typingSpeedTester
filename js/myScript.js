@@ -43,7 +43,7 @@ function spellCheck(){
         TESTWRAPPER.style.borderColor = "#429890";
     }else{
         if (textEntered == originTextMatch){
-            TESTWRAPPER.style.borderColor = "#65ccf3"
+            TESTWRAPPER.style.borderColor = "#65ccf3";
         }else {
             TESTWRAPPER.style.borderColor = "#E95d0f";
         }
@@ -108,17 +108,3 @@ TESTAREA.addEventListener("keyup", wordsPerMin, false);
 RESETBUTTON.addEventListener("click", reset, false);
 
 
-/************************************************************************************************ */
-/*  var startTime = Date.now();
-    var endTime;
-    var totalTime;
-    if (string == ORIGINTEXT){
-        endTime = Date.now();
-    }
-    totalTime = ((endTime - startTime)/60000); //the 60000 is to make it in minutes, else it is in milliseconds
-    console.log(totalTime);
-    wpm = Math.floor(length/totalTime);
-
-
-    document.getElementById("wpm").innerHTML
-    */
